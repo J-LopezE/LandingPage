@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Send } from "lucide-react";
 import { motion } from "framer-motion";
-import DOMPurify from 'dompurify';  // Importa DOMPurify
-
+import DOMPurify from 'dompurify'; 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },

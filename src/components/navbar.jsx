@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button } from "@nextui-org/react";
-import { Navbar as NextUINavbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar } from "@nextui-org/react";
+import { Navbar as NextUINavbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle } from "@nextui-org/react";
 import Logo from "../../src/img/logocoruru.jpg";
 
 export function Navbar() {
@@ -19,15 +18,15 @@ export function Navbar() {
     setIsDark(!isDark);
   };
 
-  // Función para el desplazamiento suave
-  const handleSmoothScroll = (e, targetId) => {
-    e.preventDefault(); // Previene el comportamiento predeterminado del enlace
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop - 80, // Desplazamiento con un pequeño offset (80px) para el navbar
-        behavior: "smooth", // Desplazamiento suave
+  const handleSmoothScroll = (event, target) => {
+    event.preventDefault();
+    const element = document.querySelector(target);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
+      window.location.hash = target;
     }
   };
 
@@ -43,25 +42,24 @@ export function Navbar() {
 
       <NavbarContent>
         <NavbarMenuToggle className="md:hidden" onClick={() => setIsOpen(!isOpen)} />
-        
+
         <div className={`flex items-baseline space-x-4 ${isOpen ? 'block' : 'hidden md:flex'}`}>
 
-          {/* Enlace de "Inicio" */}
           <NavbarItem>
             <a
-              href="/"
-              className={`relative px-3 py-2 text-sm font-medium ${location.pathname === "/" ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'}`}
+              href="#inicio"
+              onClick={(e) => handleSmoothScroll(e, "#inicio")}
+              className={`relative px-3 py-2 text-sm font-medium ${location.hash === "#inicio" ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'}`}
             >
               Inicio
-              {location.pathname === "/" && <motion.div className="absolute bottom-0 left-0 h-0.5 w-full bg-blue-600 dark:bg-blue-400" layoutId="navbar-underline" />}
+              {location.hash === "#inicio" && <motion.div className="absolute bottom-0 left-0 h-0.5 w-full bg-blue-600 dark:bg-blue-400" layoutId="navbar-underline" />}
             </a>
           </NavbarItem>
 
-          {/* Enlaces con desplazamiento suave */}
           <NavbarItem>
             <a
-              href="#"
-              onClick={(e) => handleSmoothScroll(e, "sobre-nosotros")}
+              href="#sobre-nosotros"
+              onClick={(e) => handleSmoothScroll(e, "#sobre-nosotros")}
               className={`relative px-3 py-2 text-sm font-medium ${location.hash === "#sobre-nosotros" ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'}`}
             >
               Acerca de Nosotros
@@ -71,19 +69,19 @@ export function Navbar() {
 
           <NavbarItem>
             <a
-              href="#"
-              onClick={(e) => handleSmoothScroll(e, "proyectos")}
+              href="#proyectos"
+              onClick={(e) => handleSmoothScroll(e, "#proyectos")}
               className={`relative px-3 py-2 text-sm font-medium ${location.hash === "#proyectos" ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'}`}
             >
-              Proyectos
+              Nuestros Clientes
               {location.hash === "#proyectos" && <motion.div className="absolute bottom-0 left-0 h-0.5 w-full bg-blue-600 dark:bg-blue-400" layoutId="navbar-underline" />}
             </a>
           </NavbarItem>
 
           <NavbarItem>
             <a
-              href="#"
-              onClick={(e) => handleSmoothScroll(e, "servicios")}
+              href="#servicios"
+              onClick={(e) => handleSmoothScroll(e, "#servicios")}
               className={`relative px-3 py-2 text-sm font-medium ${location.hash === "#servicios" ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'}`}
             >
               Servicios
@@ -93,8 +91,8 @@ export function Navbar() {
 
           <NavbarItem>
             <a
-              href="#"
-              onClick={(e) => handleSmoothScroll(e, "socios")}
+              href="#socios"
+              onClick={(e) => handleSmoothScroll(e, "#socios")}
               className={`relative px-3 py-2 text-sm font-medium ${location.hash === "#socios" ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'}`}
             >
               Socios
@@ -104,8 +102,8 @@ export function Navbar() {
 
           <NavbarItem>
             <a
-              href="#"
-              onClick={(e) => handleSmoothScroll(e, "contacto")}
+              href="#contacto"
+              onClick={(e) => handleSmoothScroll(e, "#contacto")}
               className={`relative px-3 py-2 text-sm font-medium ${location.hash === "#contacto" ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'}`}
             >
               Contacto
@@ -128,12 +126,12 @@ export function Navbar() {
 
       <NavbarItem className="md:hidden">
         <div className={`absolute top-16 left-0 right-0 bg-white dark:bg-gray-950 p-4 flex flex-col items-start space-y-4 ${isOpen ? 'block' : 'hidden'}`}>
-          <a href="/" className="text-gray-700 dark:text-white">Inicio</a>
-          <a href="#sobre-nosotros" className="text-gray-700 dark:text-white">Acerca de Nosotros</a>
-          <a href="#proyectos" className="text-gray-700 dark:text-white">Proyectos</a>
-          <a href="#servicios" className="text-gray-700 dark:text-white">Servicios</a>
-          <a href="#socios" className="text-gray-700 dark:text-white">Socios</a>
-          <a href="#contacto" className="text-gray-700 dark:text-white">Contacto</a>
+          <a href="#inicio" onClick={(e) => handleSmoothScroll(e, "#inicio")} className="text-gray-700 dark:text-white">Inicio</a>
+          <a href="#sobre-nosotros" onClick={(e) => handleSmoothScroll(e, "#sobre-nosotros")} className="text-gray-700 dark:text-white">Acerca de Nosotros</a>
+          <a href="#proyectos" onClick={(e) => handleSmoothScroll(e, "#proyectos")} className="text-gray-700 dark:text-white">Proyectos</a>
+          <a href="#servicios" onClick={(e) => handleSmoothScroll(e, "#servicios")} className="text-gray-700 dark:text-white">Servicios</a>
+          <a href="#socios" onClick={(e) => handleSmoothScroll(e, "#socios")} className="text-gray-700 dark:text-white">Socios</a>
+          <a href="#contacto" onClick={(e) => handleSmoothScroll(e, "#contacto")} className="text-gray-700 dark:text-white">Contacto</a>
         </div>
       </NavbarItem>
 
