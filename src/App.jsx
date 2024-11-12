@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import injectContext from "../src/store/appContext.jsx";
 
 import Home from "./pages/home.jsx";
-import Navbar from "./components/navbar.jsx";
+import {Navbar} from "./components/navbar.jsx";
 
 function App({ Component, pageProps }) {
   return (
