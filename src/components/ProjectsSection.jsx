@@ -13,10 +13,9 @@ export const ProjectsSection = () => {
         Empresas Líderes que Confían en Nuestros Servicios
         </h2>
         <div className="flex flex-wrap justify-center items-center gap-12">
-          {/* Card 1 */}
           <motion.div
             whileHover={{
-              scale: 1.9,  // Suave aumento del tamaño
+              scale: 1.9, 
               transition: { type: "spring", stiffness: 200, damping: 20 },
             }}
             className="w-56 h-48 p-4 flex justify-center items-center"
@@ -30,10 +29,9 @@ export const ProjectsSection = () => {
             </div>
           </motion.div>
 
-          {/* Card 2 */}
           <motion.div
             whileHover={{
-              scale: 1.15,  // Aumento suave en el tamaño del card
+              scale: 1.15,  
               transition: { type: "spring", stiffness: 200, damping: 20 },
             }}
             className="w-48 h-48 p-4 flex justify-center items-center"
@@ -47,10 +45,9 @@ export const ProjectsSection = () => {
             </div>
           </motion.div>
 
-          {/* Card 3 */}
           <motion.div
             whileHover={{
-              scale: 1.15,  // Aumento suave en el tamaño
+              scale: 1.15,  
               transition: { type: "spring", stiffness: 200, damping: 20 },
             }}
             className="w-40 h-48 p-4 flex justify-center items-center"
@@ -64,10 +61,9 @@ export const ProjectsSection = () => {
             </div>
           </motion.div>
 
-          {/* Card 4 (Placeholder) */}
           <motion.div
             whileHover={{
-              scale: 1.15,  // Aumento suave en el tamaño del card
+              scale: 1.15,  
               transition: { type: "spring", stiffness: 200, damping: 20 },
             }}
             className="w-56 h-48 p-4 flex justify-center items-center"

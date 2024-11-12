@@ -12,7 +12,7 @@ function Home() {
   return (
     <>
       <div className="container-fluid bg-blue-100">
-        <div id="hero" className="row flex-nowrap overflow-auto mb-3">
+        <div id="inicio" className="row flex-nowrap overflow-auto mb-3">
           <HeroSection />
         </div>
         <div
